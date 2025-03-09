@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 const GOOGLE_API_KEY = "AIzaSyDeZMBr3DnDmkuy7GI98jM0U1-QUcWdY9A"; // Direct API Key
 const PORT = 3000;
+const HOST = "0.0.0.0"; // Binds to all network interfaces
 
 app.use(express.json());
 app.use(cors()); // Enable frontend requests
@@ -50,7 +51,7 @@ app.post('/generate', async (req, res) => {
     }
 });
 
-// ✅ Start the server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+// ✅ Start the server with HOST binding
+app.listen(PORT, HOST, () => {
+    console.log(`🚀 Server running at http://${HOST}:${PORT}`);
 });
