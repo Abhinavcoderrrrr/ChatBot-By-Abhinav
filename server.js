@@ -30,7 +30,7 @@ app.post('/generate', async (req, res) => {
 
         // 🔥 Sending request to Google Gemini API
         const response = await axios.post(
-            `YOUR_AI_API_LINK?key=${GOOGLE_API_KEY}`,
+            `YOUR_API_ENDPOINT?key=${GOOGLE_API_KEY}`,
             {
                 contents: [{
                     parts: [{ text: userInput }]
