@@ -5,10 +5,10 @@ const cors = require('cors');
 const app = express();
 const GOOGLE_API_KEY = "AIzaSyDeZMBr3DnDmkuy7GI98jM0U1-QUcWdY9A"; // Direct API Key
 const PORT = 3000;
-const HOST = "0.0.0.0"; // Binds to all network interfaces
+const HOST = "localhost"; // Set to localhost for development, ngrok URL in production
 
 app.use(express.json());
-app.use(cors()); // Enable frontend requests
+app.use(cors({ origin: '*' })); // Allow all origins (or customize as needed)
 
 // ✅ Check if the server is running
 app.get('/', (req, res) => {
@@ -30,9 +30,7 @@ app.post('/generate', async (req, res) => {
         const response = await axios.post(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GOOGLE_API_KEY}`,
             {
-                contents: [{
-                    parts: [{ text: userInput }]
-                }]
+                contents: [{ parts: [{ text: userInput }] }]
             },
             {
                 headers: { "Content-Type": "application/json" }
@@ -51,7 +49,7 @@ app.post('/generate', async (req, res) => {
     }
 });
 
-// ✅ Start the server with HOST binding
+// ✅ Start the server
 app.listen(PORT, HOST, () => {
-    console.log(`🚀 Server running at http://${HOST}:${PORT}`);
+    console.log(`🚀 Server running on http://${HOST}:${PORT}`);
 });
