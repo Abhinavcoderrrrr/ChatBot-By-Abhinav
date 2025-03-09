@@ -13,25 +13,6 @@
 🛠️ Installation & Setup
 Clone the repository
 
-bash
-
-git clone https://github.com/your-repo/chatbot-by-abhinav.git
-cd chatbot-by-abhinav
-
-Copy
-
-Edit
-git clone https://github.com/your-repo/chatbot-by-abhinav.git
-cd chatbot-by-abhinav
-
-Rename server_example.js to server.js
-
-Replace placeholders in the code with your Google API key
-
-Deploy the app on GitHub Pages, Vercel, or Firebase
-
-Start chatting instantly!
-
 📜 Copyright & Usage
 ⚠️ This chatbot is free and open-source, but giving credits is mandatory
 You are NOT allowed to use this chatbot without crediting the original developer (Abhinav)
