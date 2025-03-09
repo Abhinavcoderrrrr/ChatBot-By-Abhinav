@@ -37,7 +37,7 @@ function sendMessage() {
     displayMessage(userMessage, "user-message");
     promptInput.value = '';
 
-    fetch("http://localhost:3000/generate", {
+    fetch("http://localhost:3000/generate", {  // 🔒 Replace with your API endpoint if needed
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -92,12 +92,6 @@ function saveChat() {
 // Load messages when the page is loaded
 window.onload = function() {
     console.log("Page loaded");
-};
-
-document.getElementById("SaveChatButton").addEventListener("click", saveChat);
-
-window.onload = function() {
-    console.log("Page loaded");
 
     let chatHistory = JSON.parse(localStorage.getItem('chatHistory'));
     if (chatHistory) {
@@ -108,6 +102,8 @@ window.onload = function() {
         console.log("No chat history found");
     }
 };
+
+document.getElementById("SaveChatButton").addEventListener("click", saveChat);
 
 document.getElementById("ResetButton").addEventListener("click", resetChat);
 
@@ -121,6 +117,7 @@ function resetChat() {
 
 // Auto-save chat every 5 minutes
 setInterval(saveChat, 300000); // 300000 milliseconds = 5 minutes
+
 let stopTyping = false;
 
 function stopChat() {
