@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // ✅ API Route for generating text (Using gemini-2.0-flash)
-app.post('/generate', async (req, res) => {
+app.post('https://e6d7-152-59-133-21.ngrok-free.app/generate', async (req, res) => {
     try {
         const userInput = req.body.message;
 
