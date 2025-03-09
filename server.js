@@ -4,8 +4,7 @@ const cors = require('cors');
 
 const app = express();
 const GOOGLE_API_KEY = "AIzaSyDeZMBr3DnDmkuy7GI98jM0U1-QUcWdY9A"; // Direct API Key
-const PORT = 3000;
-const HOST = "localhost"; // Set to localhost for development, ngrok URL in production
+const PORT = 3000; // Set to localhost for development, ngrok URL in production
 
 app.use(express.json());
 app.use(cors({ origin: '*' })); // Allow all origins (or customize as needed)
@@ -16,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 // ✅ API Route for generating text (Using gemini-2.0-flash)
-app.post('https://e6d7-152-59-133-21.ngrok-free.app/generate', async (req, res) => {
+app.post('/generate', async (req, res) => {
     try {
         const userInput = req.body.message;
 
@@ -50,6 +49,6 @@ app.post('https://e6d7-152-59-133-21.ngrok-free.app/generate', async (req, res) 
 });
 
 // ✅ Start the server
-app.listen(PORT, HOST, () => {
-    console.log(`🚀 Server running on http://${HOST}:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

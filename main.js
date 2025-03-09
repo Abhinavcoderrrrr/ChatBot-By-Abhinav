@@ -37,7 +37,7 @@ function sendMessage() {
     displayMessage(userMessage, "user-message");
     promptInput.value = '';
 
-    fetch("http://https://e6d7-152-59-133-21.ngrok-free.app/generate/generate", {
+    fetch("http://localhost:3000", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
