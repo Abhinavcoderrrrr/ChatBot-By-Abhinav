@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+#heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#heading:hover {
+    background-color: #333333;
+    transform: scale(1.05);
+}
+
+#chatContainer {
+    background: white;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    height: 400px;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #000000;
+    transition: 0.3s ease-in-out;
+}
+
+.message {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.user-message {
+    background-color: #e0e0e0;
+    text-align: right;
+    margin-left: auto;
+}
+
+.ai-message {
+    background-color: #f0f0f0;
+    text-align: left;
+    margin-right: auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#PromptInput {
+    width: 65%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#PromptInput:focus {
+    border-color: #333333;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+#SendButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#SendButton:hover {
+    background: #333333;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    #chatContainer {
+        width: 90%;
+        height: 300px;
+    }
+    #PromptInput {
+        width: 60%;
+    }
+    #SendButton {
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #chatContainer {
+        width: 95%;
+        height: 250px;
+    }
+    #PromptInput {
+        width: 55%;
+        font-size: 14px;
+    }
+    #SendButton {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+/* Added hover effects for messages */
+.message:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+/* Animating the chatbot container */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#chatContainer {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Typing animation effect */
+.typing-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    background-color: grey;
+    border-radius: 50%;
+    animation: typing 1s infinite;
+}
+
+@keyframes typing {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+#SaveChatButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+#SaveChatButton:hover {
+    background: #333333;
+    transform: scale(1.05);
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+#ResetButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+#ResetButton:hover {
+    background: #333333;
+    transform: scale(1.05);
+}
+
+#notification {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+#notification.show {
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#notification.show {
+    animation: slideDown 0.5s ease-in-out;
+}
+
+#notification.hide {
+    animation: slideDown 0.5s ease-in-out reverse;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+#StopButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+#StopButton:hover {
+    background: #333333;
+    transform: scale(1.05);
+}

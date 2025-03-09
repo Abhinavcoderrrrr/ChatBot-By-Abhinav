@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <title>Chatbot by Abhinav</title>
+</head>
+<body class="container mt-5">
+    <h1 id="heading" class="text-center mb-4">Chatbot by Abhinav</h1>
+    <div id="chatContainer" class="border p-3 mb-3"></div>
+    <div class="input-group mb-3">
+        <input type="text" id="PromptInput" class="form-control" placeholder="Ask anything">
+        <div class="input-group-append">
+            <button id="SendButton" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+    <div class="btn-group mb-3" role="group">
+        <button id="SaveChatButton" class="btn btn-secondary" onclick="saveChat()">Save Chat</button>
+        <button id="ResetButton" class="btn btn-warning" onclick="resetChat()">Reset</button>
+        <button id="StopButton" class="btn btn-danger" onclick="stopChat()">Stop</button>
+    </div>
+    <div id="notification" class="alert alert-info" style="display: none;"></div>
+</body>
+</html>
