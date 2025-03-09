@@ -3,7 +3,10 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const GOOGLE_API_KEY = "AIzaSyDeZMBr3DnDmkuy7GI98jM0U1-QUcWdY9A"; // Direct API Key
+
+// 🔒 Replace with your Google API Key
+const GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY_HERE";
+
 const PORT = 3000;
 
 app.use(express.json());
@@ -27,7 +30,7 @@ app.post('/generate', async (req, res) => {
 
         // 🔥 Sending request to Google Gemini API
         const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GOOGLE_API_KEY}`,
+            `YOUR_AI_API_LINK?key=${GOOGLE_API_KEY}`,
             {
                 contents: [{
                     parts: [{ text: userInput }]
