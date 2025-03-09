@@ -15,6 +15,10 @@ function displayMessage(text, className) {
     if (className === "ai-message") {
         let index = 0;
         function typeLetter() {
+            if (stopTyping) {
+                messageDiv.innerText = text; // Display full message if stopped
+                return;
+            }
             if (index < text.length) {
                 messageDiv.innerText += text.charAt(index) === ' ' ? '\u00A0' : text.charAt(index);
                 index++;
@@ -37,7 +41,7 @@ function sendMessage() {
     displayMessage(userMessage, "user-message");
     promptInput.value = '';
 
-    fetch("http://localhost:3000/generate", {  // 🔒 Replace with your API endpoint if needed
+    fetch("http://192.168.42.228:3000/generate", {  // ✅ Using your specified IP
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -104,7 +108,6 @@ window.onload = function() {
 };
 
 document.getElementById("SaveChatButton").addEventListener("click", saveChat);
-
 document.getElementById("ResetButton").addEventListener("click", resetChat);
 
 function resetChat() {
@@ -123,34 +126,6 @@ let stopTyping = false;
 function stopChat() {
     console.log("Stopping chat...");
     stopTyping = true;
-}
-
-function displayMessage(text, className) {
-    console.log(`Displaying message: ${text} with class: ${className}`);
-    let chatContainer = document.getElementById('chatContainer');
-    let messageDiv = document.createElement('div');
-    
-    messageDiv.className = `message ${className}`;
-    chatContainer.appendChild(messageDiv);
-    chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
-
-    if (className === "ai-message") {
-        let index = 0;
-        function typeLetter() {
-            if (stopTyping) {
-                messageDiv.innerText = text; // Display full message if stopped
-                return;
-            }
-            if (index < text.length) {
-                messageDiv.innerText += text.charAt(index) === ' ' ? '\u00A0' : text.charAt(index);
-                index++;
-                setTimeout(typeLetter, 20); // Adjust typing speed here (faster)
-            }
-        }
-        typeLetter();
-    } else {
-        messageDiv.innerText = text;
-    }
 }
 
 document.getElementById("StopButton").addEventListener("click", stopChat);
