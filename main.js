@@ -15,10 +15,6 @@ function displayMessage(text, className) {
     if (className === "ai-message") {
         let index = 0;
         function typeLetter() {
-            if (stopTyping) {
-                messageDiv.innerText = text; // Display full message if stopped
-                return;
-            }
             if (index < text.length) {
                 messageDiv.innerText += text.charAt(index) === ' ' ? '\u00A0' : text.charAt(index);
                 index++;
@@ -41,7 +37,7 @@ function sendMessage() {
     displayMessage(userMessage, "user-message");
     promptInput.value = '';
 
-    fetch("http://192.168.42.228:3000/generate", {  // ✅ Using your specified IP
+    fetch("http://https://e6d7-152-59-133-21.ngrok-free.app/generate/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -96,6 +92,12 @@ function saveChat() {
 // Load messages when the page is loaded
 window.onload = function() {
     console.log("Page loaded");
+};
+
+document.getElementById("SaveChatButton").addEventListener("click", saveChat);
+
+window.onload = function() {
+    console.log("Page loaded");
 
     let chatHistory = JSON.parse(localStorage.getItem('chatHistory'));
     if (chatHistory) {
@@ -107,7 +109,6 @@ window.onload = function() {
     }
 };
 
-document.getElementById("SaveChatButton").addEventListener("click", saveChat);
 document.getElementById("ResetButton").addEventListener("click", resetChat);
 
 function resetChat() {
@@ -120,12 +121,39 @@ function resetChat() {
 
 // Auto-save chat every 5 minutes
 setInterval(saveChat, 300000); // 300000 milliseconds = 5 minutes
-
 let stopTyping = false;
 
 function stopChat() {
     console.log("Stopping chat...");
     stopTyping = true;
+}
+
+function displayMessage(text, className) {
+    console.log(`Displaying message: ${text} with class: ${className}`);
+    let chatContainer = document.getElementById('chatContainer');
+    let messageDiv = document.createElement('div');
+    
+    messageDiv.className = `message ${className}`;
+    chatContainer.appendChild(messageDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
+
+    if (className === "ai-message") {
+        let index = 0;
+        function typeLetter() {
+            if (stopTyping) {
+                messageDiv.innerText = text; // Display full message if stopped
+                return;
+            }
+            if (index < text.length) {
+                messageDiv.innerText += text.charAt(index) === ' ' ? '\u00A0' : text.charAt(index);
+                index++;
+                setTimeout(typeLetter, 20); // Adjust typing speed here (faster)
+            }
+        }
+        typeLetter();
+    } else {
+        messageDiv.innerText = text;
+    }
 }
 
 document.getElementById("StopButton").addEventListener("click", stopChat);
